@@ -18,8 +18,9 @@ namespace iot_device_x509selfsigned
             await ReceiveC2dAsync();
         }
 
-        // poorlyfundedskynet
-        private static string HubAdminConnectionString = "HostName=poorlyfundedskynet.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=kfYLa5P1eKD9UFwBumQ5KtbDruTWDMuCr/4rhH1kDI0=";
+        // .secret file should contain the connection string and just that
+        // HostName=hubname.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=Th3KEy=
+        private static string HubAdminConnectionString = File.ReadAllText("IoTHubOwner.secret");
         private static string HubUrl = "poorlyfundedskynet.azure-devices.net";
 
         public static DeviceClient CreateSelfSignedDevice(TransportType transport, string deviceId)

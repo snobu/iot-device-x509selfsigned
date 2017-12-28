@@ -23,4 +23,8 @@
     <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(OutDir)\certs"/>
   </Target>
 
+  <Target Name="CopySecretOnPublish" AfterTargets="AfterBuild">
+    <Copy SourceFiles="IoTHubOwner.secret" DestinationFolder="$(OutDir)"/>
+  </Target>
+
 </Project>
