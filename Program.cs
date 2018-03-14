@@ -65,11 +65,11 @@ namespace iot_device_x509selfsigned
 
         public static DeviceClient CreateClient(TransportType transport, string deviceId)
         {
-            Console.WriteLine("Connecting to IoT Hub...");
+            Console.WriteLine("Connecting to IoT Hub with certificate:");
             var certificate = GetSelfSigned();
-            var auth = new DeviceAuthenticationWithX509Certificate(deviceId, certificate);
-            DeviceClient client;
-            client = DeviceClient.Create(HubUrl, auth, transport);
+            DeviceAuthenticationWithX509Certificate auth = new DeviceAuthenticationWithX509Certificate(deviceId, certificate);
+            Console.WriteLine($"----------\n{auth.Certificate}----------");
+            DeviceClient client = DeviceClient.Create(HubUrl, auth, transport);
             
             return client;
         }
